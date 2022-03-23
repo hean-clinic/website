@@ -29,6 +29,14 @@
             margin-bottom: 10px;
             /* Added */
         }
+        
+        tr {
+            margin-top: 5%;
+        }
+
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -114,86 +122,35 @@
             </div>
 
             <h2 style="text-align: center; color: #000000b7; margin: 2%;"><strong>民國111年休診時段</strong></h2>
-            <table
-                style="display: flex; justify-content: center; align-items: center; border-collapse:separate; border-spacing:60px 10px;">
-                <tr>
-                    <td style="text-align: center; ">
-                        <h4><strong>日期</strong></h4>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>門診狀況</strong></h4>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>備註</strong></h4>
-                    </td>
-                </tr>
-                <!-- <tr style="margin-top: 5%;">
-                    <td style="text-align: center;">
-                        <h4><strong>01月01日(週六)</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>全日休診</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>元旦休診</strong></h4><br>
-                    </td>
-                </tr> -->
-                <tr style="margin-top: 5%;">
-                    <td style="text-align: center;">
-                        <h4><strong>01月01日(週六)</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>全日休診</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>元旦休診</strong></h4><br>
-                    </td>
-                </tr>
-                <tr style="margin-top: 5%;">
-                    <td style="text-align: center;">
-                        <h4><strong>01月31日(周一) <br>〡<br> 02月03日(周四)</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>全日休診</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>春節休診</strong></h4><br>
-                    </td>
-                </tr>
-                <tr style="margin-top: 5%;">
-                    <td style="text-align: center;">
-                        <h4><strong>04月05日(週二)</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>全日休診</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>清明節休診</strong></h4><br>
-                    </td>
-                </tr>
-                <tr style="margin-top: 5%;">
-                    <td style="text-align: center;">
-                        <h4><strong>06月03日(週五)</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>全日休診</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>端午節休診</strong></h4><br>
-                    </td>
-                </tr>
-                <tr style="margin-top: 5%;">
-                    <td style="text-align: center;">
-                        <h4><strong>09月10日(週六)</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>全日休診</strong></h4><br>
-                    </td>
-                    <td style="text-align: center;">
-                        <h4><strong>中秋節休診</strong></h4><br>
-                    </td>
-                </tr>
-            </table>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <table class="calender" style="border-collapse:separate; border-spacing:60px 10px;" ></table>
+            </div>
+            <script>
+                const uri = 'https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/首頁?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU';                fetch(uri)
+                    .then(res => res.json())
+                    .then(res => {
+                        const data = res.values;
+                        console.log(data);
+                        
+                        for (var i = 0; i < data.length; i++) {
+                            let Card = `
+                            <tr>
+                                <td>
+                                    <h4><strong>${data[i][0]}</strong></h4><br>
+                                </td>
+                                <td>
+                                    <h4><strong>${data[i][1]}</strong></h4><br>
+                                </td>
+                                <td>
+                                    <h4><strong>${data[i][2]}</strong></h4><br>
+                                </td>
+                            </tr>
+                            `;
+                            document.querySelector('.calender').insertAdjacentHTML('beforeend', Card);
+                        }
+                    })
+            </script>
+
             <h6 style="text-align: center; color: #000000b7; margin: 2%;"><strong>若有更動，另行公告</strong></h6>
             <h6 style="text-align: center; color: #000000b7; margin: 2%;"><strong>禾安診所關心您</strong></h6>
 
