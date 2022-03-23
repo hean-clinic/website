@@ -27,6 +27,7 @@
             border-radius: 50px;
         }
     </style>
+
 </head>
 
 <body>
@@ -76,79 +77,78 @@
 
         <h2 style="text-align: center; color: #000000b7; margin: 2%;"><strong>最新消息</strong></h2>
 
-        <!-- <div class="card" style="width: 30rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h2 style="text-align: center;"><strong></strong></h2><br>
-                <p class="card-text" style="text-align: center;"><strong>1/31(除夕)-2/3(初三)休診，1/24(初四)恢復正常看診。</strong></p>
-                <p style="text-align: center;"><small>2022-01-14</small></p>
-            </div>
-        </div> -->
-
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+        </noscript>
         <div class="container">
             <div class="row">
                 <div class="col" style="margin-left: 14%;">
-                    <div class="card" style="width: 100%; height: 62%;">
-                        <img src="image/news20220304.jpeg" class="card-img-top" alt="..." style="border-radius: 50px;">
-                        <div class="card-body">
-                            <h3 style="text-align: center;"><strong>糖尿病與陰部搔癢</strong></h3><br>
-                            <p class="card-text" style="text-align: center;">
-                                <strong>預防糖尿病的發生，請注意飲食、戒煙、戒酒、</strong><br>
-                                <strong>規律運動，並定期健康檢查，早期發現，早期治療，</strong><br>
-                                <strong>避免併發症之發生。</strong><br>
-                            </p>
-                            <p style="text-align: center;"><small>2022-03-04</small></p>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 100.5%; height: 38%; margin-top: 20px;">
-                        <img src="image/carousel_2.png" class="card-img-top" alt="..." style="border-radius: 50px;">
-                        <div class="card-body">
-                            <h4 style="text-align: center;"><strong>團結抗疫，三劑疫苗，打好打滿</strong></h4><br>
-                            
-                            <p class="card-text" style="text-align: center;">
-                                <strong>為保護自身和家人的安全，避免疫情的擴散，</strong><br>
-                                <strong>請大家依照時程施打疫苗。</strong><br>
-                            </p>
-                            <p style="text-align: center;"><small>2022-01-14</small></p>
-                        </div>
-                    </div>
+                    <section class="js-append-card-left"></section>
                 </div>
                 <div class="col" style="margin-right: 14%;">
-                    <div class="card" style="width: 100%; height: 36%;">
-                        <img src="image/carousel_1.png" class="card-img-top" alt="..." style="border-radius: 50px;">
-                        <div class="card-body">
-                            <h3 style="text-align: center;"><strong>春節休診公告</strong></h3><br>
-                            <p class="card-text" style="text-align: center;">
-                                <strong>1/31(除夕)-2/3(初三)休診，1/24(初四)恢復正常看診。</strong>
-                            </p>
-                            <p style="text-align: center;"><small>2022-01-14</small></p>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 100%; height: 60%; margin-top: 20px;">
-                        <img src="image/carousel_3.png" class="card-img-top" alt="..." style="border-radius: 50px;">
-                        <div class="card-body">
-                            <h3 style="text-align: center;"><strong>金虎祈福闔家幸福</strong></h3><br>
-                            <p class="card-text" style="text-align: center;">
-                                <strong>禾安診所祝大家在新的一年</strong><br>
-                                <strong>福虎生豐！虎嘯祥瑞！虎躍新程！</strong><br>
-                            </p>
-                            
-                            
-                            <p style="text-align: center;"><small>2021-12-26</small></p>
-                        </div>
-                    </div>
+                    <section class="js-append-card-right"></section>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col">
-
-                </div>
-            </div>
-             -->
         </div>
+        <script>
+            const uri = 'https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/NEWS?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU';
+            // https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/NEWS?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU
+            fetch(uri)
+                .then(res => res.json())
+                .then(res => {
+                    const data = res.values;
+                    console.log(data);
+
+                    // 刪除第一個陣列
+                    data.shift();
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (i % 2 == 0) {
+                            let Card = `
+                            <div class="card" style="width: 100%; height: 62%;">
+                                <img src="${data[i][0]}" class="card-img-top" alt="..." style="border-radius: 50px;">
+                                <div class="card-body">
+                                    <h3 style="text-align: center;"><strong>${data[i][1]}</strong></h3><br>
+                                    <p class="card-text" style="text-align: center;"><strong>${data[i][2]}</strong><br></p>
+                                    <p style="text-align: center;"><small>${data[i][3]}</small></p>
+                                </div>
+                            </div>
+                            `;
+                            document.querySelector('.js-append-card-left').insertAdjacentHTML('beforeend', Card);
+                        } else {
+                            let Card = `
+                            <div class="card" style="width: 100%; height: 62%;">
+                                <img src="${data[i][0]}" class="card-img-top" alt="..." style="border-radius: 50px;">
+                                <div class="card-body">
+                                    <h3 style="text-align: center;"><strong>${data[i][1]}</strong></h3><br>
+                                    <p class="card-text" style="text-align: center;"><strong>${data[i][2]}</strong><br></p>
+                                    <p style="text-align: center;"><small>${data[i][3]}</small></p>
+                                </div>
+                            </div>
+                            `;
+                            document.querySelector('.js-append-card-right').insertAdjacentHTML('beforeend', Card);
+                        }
+                    }
+
+                    // Array.prototype.forEach.call(data, d => {
+                    //     let Card = `
+                    //     <div class="card" style="width: 100%; height: 62%;">
+                    //         <img src="${d[0]}" class="card-img-top" alt="..." style="border-radius: 50px;">
+                    //         <div class="card-body">
+                    //             <h3 style="text-align: center;"><strong>${d[1]}</strong></h3><br>
+                    //             <p class="card-text" style="text-align: center;"><strong>${d[2]}</strong><br></p>
+                    //             <p style="text-align: center;"><small>${d[3]}</small></p>
+                    //         </div>
+                    //     </div>
+                    //     `;
+                    //     document.querySelector('.js-append-card').insertAdjacentHTML('beforeend', Card);
+                    // })
+                })
+        </script>
 
         <footer class="text-center" style="margin-top: 5%;">
-            <div style="display: flex; justify-content: center; align-items: center; margin-top: 80%;">
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 5%;">
                 <hr style="color: #929ba7; width: 90%;">
             </div>
 
@@ -157,10 +157,6 @@
                 <p style="color: #929ba7;"><strong>連絡電話 : (04)25231588 / 地址 : 台中市豐原區永康路312號</strong></p>
             </div>
         </footer>
-
-    </div>
-
-
 
     </div>
 </body>
