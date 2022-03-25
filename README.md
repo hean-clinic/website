@@ -2,7 +2,7 @@
 ## 禾安診所
 ### 🚀 [禾安診所官方網頁連結](https://heanclinicwebsite.github.io/HeanClinic/)
 
-### 🩺 院醫療服務
+### 🩺 本院醫療服務
 #### 內科，家醫科，職業病，預防保健，居家醫療，兒童疾病
 <br>
 
