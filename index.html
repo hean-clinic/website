@@ -37,6 +37,11 @@
         td {
             text-align: center;
         }
+
+        .AD_picture {
+            width: 600px;
+            height: 400px;
+        }
     </style>
 </head>
 
@@ -147,14 +152,14 @@
                         if (i == 1) {
                             let Card = `
                             <div class="carousel-item active">
-                            <img src="${data[i][0]}" class="d-block w-100">
+                            <img src="${data[i][0]}" class="d-block w-100 AD_picture">
                             </div>
                             `;
                             document.querySelector('.advertisePicture').insertAdjacentHTML('beforeend', Card);
                         } else {
                             let Card = `
                             <div class="carousel-item">
-                            <img src="${data[i][0]}" class="d-block w-100">
+                            <img src="${data[i][0]}" class="d-block w-100 AD_picture">
                             </div>
                             `;
                             document.querySelector('.advertisePicture').insertAdjacentHTML('beforeend', Card);
