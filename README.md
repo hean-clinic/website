@@ -25,4 +25,4 @@
 
 #### ☎️ 連絡電話 : (04)25231588
 #### 🏥 地址 : 台中市豐原區永康路312號
-#### 🧑🏻‍💻 Create By : [ridemountainpig](https://github.com/ridemountainpig/)
+#### 🧑🏻‍💻 Author : [ridemountainpig](https://github.com/ridemountainpig/)
