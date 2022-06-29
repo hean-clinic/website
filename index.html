@@ -71,17 +71,29 @@
 
         @media screen and (min-width:1000px) {
             .AD {
-                width: 60%;
+                width: 50%;
             }
         }
 
         .calender {
+            font-size: 16px;
             width: 95%;
         }
 
-        @media screen and (min-width:1000px) {
+        @media screen and (min-width:767px) {
             .calender {
+                font-size: 20px;
                 width: 60%;
+            }
+        }
+
+        .calender-shadow {
+            
+        }
+
+        @media screen and (min-width:767px) {
+            .calender-shadow {
+                box-shadow: 30px 30px #fff4f6;
             }
         }
     </style>
@@ -219,8 +231,8 @@
         </div>
 
         <div class="d-flex justify-content-center my-5">
-            <div class="py-3 calender"
-                style="background-color: white; height: 70%; border-radius: 50px; box-shadow: 30px 30px #fff4f6;">
+            <div class="py-3 calender calender-shadow"
+                style="background-color: white; height: 70%; border-radius: 50px;">
                 <h2 style="text-align: center; color: #000000b7; margin: 2%;"><strong>民國111年休診時段</strong></h2>
                 <div style="display: flex; justify-content: center; align-items: center;">
                     <div class="container calender"></div>
@@ -239,13 +251,13 @@
                         let Card = `
                             <div class="row py-3">
                                 <div class="col-5" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-                                    <h4><strong>${data[i][0]}</strong></h4>
+                                    <sapn><strong>${data[i][0]}</strong></sapn>
                                 </div>
                                 <div class="col-3" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-                                    <h4><strong>${data[i][1]}</strong></h4>
+                                    <span><strong>${data[i][1]}</strong></span>
                                 </div>
                                 <div class="col-4" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-                                    <h4><strong>${data[i][2]}</strong></h4>
+                                    <span><strong>${data[i][2]}</strong></spam>
                                 </div>
                             </div>
                             
