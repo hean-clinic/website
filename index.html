@@ -30,17 +30,59 @@
             /* Added */
         }
 
-        tr {
-            margin-top: 5%;
-        }
-
-        td {
-            text-align: center;
-        }
-
         .AD_picture {
             width: 600px;
             height: 430px;
+        }
+
+        .middle-logo {
+            width: 80%;
+        }
+
+        @media screen and (min-width:1000px) {
+            .middle-logo {
+                width: 60%;
+            }
+        }
+
+        .middle-text-small {
+            margin-top: -20%;
+        }
+
+        @media screen and (min-width:767px) {
+            .middle-text-small {
+                margin-top: 15%;
+            }
+        }
+
+        .middle-text {
+            margin-top: -20%;
+        }
+
+        @media screen and (min-width:767px) {
+            .middle-text {
+                margin-top: 5%;
+            }
+        }
+
+        .AD {
+            width: 90%;
+        }
+
+        @media screen and (min-width:1000px) {
+            .AD {
+                width: 60%;
+            }
+        }
+
+        .calender {
+            width: 95%;
+        }
+
+        @media screen and (min-width:1000px) {
+            .calender {
+                width: 60%;
+            }
         }
     </style>
 </head>
@@ -92,157 +134,169 @@
         style="background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); padding-top: 5%; padding-bottom: 5%; color: #000000b7;">
 
         <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 5%;">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 600px;">
-                <div class="carousel-indicators advertise">
-                    <!-- <div class="advertise"></div> -->
-                    <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+            <div id="carouselExampleIndicators" class="carousel slide AD" data-bs-ride="carousel"">
+                <div class=" carousel-indicators advertise">
+                <!-- <div class="advertise"></div> -->
+                <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                         class="active" aria-current="true" aria-label="Slide 1"></button> -->
-                    <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
                         aria-label="Slide 2"></button> -->
-                    <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                         aria-label="Slide 3"></button> -->
-                </div>
-                <div class="carousel-inner advertisePicture">
-                    <!-- <div class="advertisePicture"></div> -->
-                    <!-- <div class="carousel-item active">
+            </div>
+            <div class="carousel-inner advertisePicture">
+                <!-- <div class="advertisePicture"></div> -->
+                <!-- <div class="carousel-item active">
                         <img src="image/carousel_2.png" class="d-block w-100">
                     </div> -->
-                    <!-- <div class="carousel-item">
+                <!-- <div class="carousel-item">
                         <img src="image/carousel_1.png" class="d-block w-100">
                     </div> -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const url = 'https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/首頁廣告?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU';
+        fetch(url)
+            .then(res => res.json())
+            .then(res => {
+                const data = res.values;
+                console.log(data);
+
+                for (var i = 1; i < data.length; i++) {
+                    if (i == 1) {
+                        let Card = `
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i - 1}"
+                            class="active" aria-current="true" aria-label="Slide ${i}"></button>
+                            `;
+                        document.querySelector('.advertise').insertAdjacentHTML('beforeend', Card);
+                    } else {
+                        let Card = `
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i - 1}"
+                            class="active" aria-label="Slide ${i}"></button>
+                            `;
+                        document.querySelector('.advertise').insertAdjacentHTML('beforeend', Card);
+                    }
+
+                }
+
+                for (var i = 1; i < data.length; i++) {
+                    if (i == 1) {
+                        let Card = `
+                            <div class="carousel-item active">
+                            <img src="${data[i][0]}" class="d-block w-100 AD_picture">
+                            </div>
+                            `;
+                        document.querySelector('.advertisePicture').insertAdjacentHTML('beforeend', Card);
+                    } else {
+                        let Card = `
+                            <div class="carousel-item">
+                            <img src="${data[i][0]}" class="d-block w-100 AD_picture">
+                            </div>
+                            `;
+                        document.querySelector('.advertisePicture').insertAdjacentHTML('beforeend', Card);
+                    }
+                }
+
+            })
+    </script>
+
+    <div style="color: #000000b7;">
+
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <hr style="width: 60%; ">
+        </div>
+
+        <div class="d-flex justify-content-center my-5">
+            <div class="py-3 calender"
+                style="background-color: white; height: 70%; border-radius: 50px; box-shadow: 30px 30px #fff4f6;">
+                <h2 style="text-align: center; color: #000000b7; margin: 2%;"><strong>民國111年休診時段</strong></h2>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <div class="container calender"></div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
 
         <script>
-            const url = 'https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/首頁廣告?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU';
-            fetch(url)
+            const uri = 'https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/首頁?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU'; fetch(uri)
                 .then(res => res.json())
                 .then(res => {
                     const data = res.values;
                     console.log(data);
 
-                    for (var i = 1; i < data.length; i++) {
-                        if (i == 1) {
-                            let Card = `
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i - 1}"
-                            class="active" aria-current="true" aria-label="Slide ${i}"></button>
-                            `;
-                            document.querySelector('.advertise').insertAdjacentHTML('beforeend', Card);
-                        } else {
-                            let Card = `
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i - 1}"
-                            class="active" aria-label="Slide ${i}"></button>
-                            `;
-                            document.querySelector('.advertise').insertAdjacentHTML('beforeend', Card);
-                        }
-
-                    }
-
-                    for (var i = 1; i < data.length; i++) {
-                        if (i == 1) {
-                            let Card = `
-                            <div class="carousel-item active">
-                            <img src="${data[i][0]}" class="d-block w-100 AD_picture">
+                    for (var i = 0; i < data.length; i++) {
+                        let Card = `
+                            <div class="row py-3">
+                                <div class="col-5" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+                                    <h4><strong>${data[i][0]}</strong></h4>
+                                </div>
+                                <div class="col-3" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+                                    <h4><strong>${data[i][1]}</strong></h4>
+                                </div>
+                                <div class="col-4" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+                                    <h4><strong>${data[i][2]}</strong></h4>
+                                </div>
                             </div>
+                            
                             `;
-                            document.querySelector('.advertisePicture').insertAdjacentHTML('beforeend', Card);
-                        } else {
-                            let Card = `
-                            <div class="carousel-item">
-                            <img src="${data[i][0]}" class="d-block w-100 AD_picture">
-                            </div>
-                            `;
-                            document.querySelector('.advertisePicture').insertAdjacentHTML('beforeend', Card);
-                        }
+                        document.querySelector('.calender').insertAdjacentHTML('beforeend', Card);
                     }
-
                 })
         </script>
 
-        <div style="color: #000000b7;">
+        <h6 style="text-align: center; color: #000000b7; margin: 2%;"><strong>若有更動，另行公告</strong></h6>
+        <h6 style="text-align: center; color: #000000b7; margin: 2%;"><strong>禾安診所關心您</strong></h6>
 
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <hr style="width: 60%; ">
-            </div>
-
-            <h2 style="text-align: center; color: #000000b7; margin: 2%;"><strong>民國111年休診時段</strong></h2>
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <table class="calender" style="border-collapse:separate; border-spacing:60px 10px;"></table>
-            </div>
-            <script>
-                const uri = 'https://sheets.googleapis.com/v4/spreadsheets/1wbbW_cOcTSwINwqU1iHkC_chKLMmDWdR3jt0QJAI_yk/values/首頁?alt=json&key=AIzaSyD53TuBdnEDGAt_rqHkztOEtnnnkO54_gU'; fetch(uri)
-                    .then(res => res.json())
-                    .then(res => {
-                        const data = res.values;
-                        console.log(data);
-
-                        for (var i = 0; i < data.length; i++) {
-                            let Card = `
-                            <tr>
-                                <td>
-                                    <h4><strong>${data[i][0]}</strong></h4><br>
-                                </td>
-                                <td>
-                                    <h4><strong>${data[i][1]}</strong></h4><br>
-                                </td>
-                                <td>
-                                    <h4><strong>${data[i][2]}</strong></h4><br>
-                                </td>
-                            </tr>
-                            `;
-                            document.querySelector('.calender').insertAdjacentHTML('beforeend', Card);
-                        }
-                    })
-            </script>
-
-            <h6 style="text-align: center; color: #000000b7; margin: 2%;"><strong>若有更動，另行公告</strong></h6>
-            <h6 style="text-align: center; color: #000000b7; margin: 2%;"><strong>禾安診所關心您</strong></h6>
-
-            <div style="display: flex; justify-content: center; align-items: center; margin: 3%;">
-                <hr style="width: 60%; ">
-            </div>
-
+        <div style="display: flex; justify-content: center; align-items: center; margin: 3%;">
+            <hr style="width: 60%; ">
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <div class="card mb-3" style="width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="image/phone.png" class="img-fluid rounded-start" width="50%"
-                            style="display:block; margin:auto; padding-top: 20%; padding-bottom: 20%;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: center; margin-top: 15%;"><strong>連絡電話 :
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="card mb-3 middle-logo">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="./image/telephone.png" class="img-fluid rounded-start" width="50%" height="50%"
+                        style="display:block; margin:auto; padding-top: 20%; padding-bottom: 20%;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h5 class="card-title middle-text-small" style="text-align: center;"><strong>連絡電話 :
                                     (04)25231588</strong></h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <div class="card mb-3" style="width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="image/calender.png" class="img-fluid rounded-start" width="50%"
-                            style="display:block; margin:auto; padding-top: 20%; padding-bottom: 20%;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: center;"><strong>門診時間</strong></h5>
-                            <p class="card-text" style="text-align: center; margin-top: 5%;"><strong>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="card mb-3 middle-logo">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="./image/calendar.png" class="img-fluid rounded-start" width="50%" height="50%"
+                        style="display:block; margin:auto; padding-top: 20%; padding-bottom: 20%;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h5 class="card-title middle-text" style="text-align: center;"><strong>門診時間</strong></h5>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p class="card-text mt-1" style="text-align: center;"><strong>
                                     早上 08:30-12:00 : 周一至周六<br />
                                     下午 14:00-17:30 : 周一至周四<br />
                                     晚上 18:00-21:00 : 周一至周五<br />
@@ -252,50 +306,51 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <div class="card mb-3" style="width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="image/map.png" class="img-fluid rounded-start" width="50%"
-                            style="display:block; margin:auto; padding-top: 20%; padding-bottom: 20%;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title" style="text-align: center; margin-top: 15%;"><strong>地址 :
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="card mb-3 middle-logo">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="./image/maps.png" class="img-fluid rounded-start" width="50%" height="50%"
+                        style="display:block; margin:auto; padding-top: 20%; padding-bottom: 20%;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h5 class="card-title middle-text-small" style="text-align: center;"><strong>地址 :
                                     台中市豐原區永康路312號</strong></h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin: 4%;">
+        <div
+            style="display: flex; justify-content: center; align-items: center; background-color: white; width: 70%; height: 550px; border-radius: 30px; box-shadow: -30px 0px #cfdef3;">
+            <div
+                style="display: flex; justify-content: center; align-items: center; background-color: white; width: 100%; height: 550px; border-radius: 30px; box-shadow: 30px 0px #cfdef3;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14552.187756253334!2d120.722678!3d24.240137!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34691a02a53472b1%3A0x43c606bfaba682d5!2zNDIw5Y-w54Gj5Y-w5Lit5biC6LGQ5Y6f5Y2A5rC45bq36LevMzEy6Jmf!5e0!3m2!1szh-TW!2sus!4v1644334608578!5m2!1szh-TW!2sus"
+                    width="90%" height="450" style="border:1px; border-radius: 30px;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
 
 
-        <div style="display: flex; justify-content: center; align-items: center; margin: 4%;">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14552.187756253334!2d120.722678!3d24.240137!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34691a02a53472b1%3A0x43c606bfaba682d5!2zNDIw5Y-w54Gj5Y-w5Lit5biC6LGQ5Y6f5Y2A5rC45bq36LevMzEy6Jmf!5e0!3m2!1szh-TW!2sus!4v1644334608578!5m2!1szh-TW!2sus"
-                width="540" height="450" style="border:1px;" allowfullscreen="" loading="lazy">
-            </iframe>
+    <footer class="text-center" style="margin-top: 5%;">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <hr style="color: #929ba7; width: 90%;">
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center; margin: 4%;">
-            <iframe
-                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%25E7%25A6%25BE%25E5%25AE%2589%25E8%25A8%25BA%25E6%2589%2580-108705670932067&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                allowfullscreen="true"
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <div>
+            <span style="color: #929ba7;"><strong>禾安診所 / 維護您身心的健康</strong></span><br>
+            <p style="color: #929ba7;"><strong>連絡電話 : (04)25231588 / 地址 : 台中市豐原區永康路312號</strong></p>
         </div>
-
-        <footer class="text-center" style="margin-top: 5%;">
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <hr style="color: #929ba7; width: 90%;">
-            </div>
-
-            <div>
-                <span style="color: #929ba7;"><strong>禾安診所 / 維護您身心的健康</strong></span><br>
-                <p style="color: #929ba7;"><strong>連絡電話 : (04)25231588 / 地址 : 台中市豐原區永康路312號</strong></p>
-            </div>
-        </footer>
+    </footer>
     </div>
 
 </body>
